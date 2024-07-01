@@ -8,8 +8,9 @@ You will first need to install the [Foundry](https://book.getfoundry.sh/getting-
 ### Build & Run Test Cases
 
 ```shell
-forge test
+forge test -vvv
 ```
+The `-vvv` argument displays verbose output for failed tests
 
 ### Start Local Blockchain
 
