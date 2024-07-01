@@ -1,66 +1,27 @@
-## Foundry
+## Escrow - Web3 Example App
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
-
-Foundry consists of:
-
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
-
-## Documentation
-
-https://book.getfoundry.sh/
+This is a simple Web3 app using Ethereum.  It implements an online escrow service which could be used to facilitate payment between remote parties for a purchase, such as an item listed on a site like eBay.  
 
 ## Usage
+You will first need to install the [Foundry](https://book.getfoundry.sh/getting-started/installation.html) toolchain for smart contract development.
 
-### Build
-
-```shell
-$ forge build
-```
-
-### Test
+### Build & Run Test Cases
 
 ```shell
-$ forge test
+forge test
 ```
 
-### Format
+### Start Local Blockchain
 
 ```shell
-$ forge fmt
+anvil
 ```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
+This will start up a local blockchain (Ethereum fork) for testing.  
+The default port is 8545 and Chain ID is 31337.  
+A list of test users with their private/public keys will be displayed at startup.  
 
 ### Deploy
 
 ```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
+forge create --rpc-url "http://127.0.0.1:8545" --private-key <your_private_key> src/Escrow.sol:Escrow
 ```
