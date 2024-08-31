@@ -25,6 +25,9 @@ contract Escrow {
 	// The sale was completed successfully (item shipped and received by the buyer, payment released to the seller)
 	event SaleCompleted(uint txId, address buyer, address seller, string item, uint price);
 
+	// The sale was canceled (payment refunded to the buyer)
+	event PurchaseCanceled(uint txId, address buyer, address seller, string item, uint price);
+
 	// Buy/sell transactions, mapped by Transaction.id
 	mapping(uint => Transaction) private transactions;
 
@@ -91,6 +94,8 @@ contract Escrow {
 		++completedTransactions;
 		if (Status.RECEIVED == finalStatus) {
 			emit SaleCompleted(txId, transactions[txId].buyer, transactions[txId].seller, transactions[txId].item, transactions[txId].price);
+		} else if (Status.CANCELED == finalStatus) {
+			emit PurchaseCanceled(txId, transactions[txId].buyer, transactions[txId].seller, transactions[txId].item, transactions[txId].price);
 		}
 	}
 
